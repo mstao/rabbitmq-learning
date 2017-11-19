@@ -23,7 +23,7 @@ public class SubscriberA {
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
 
         String queueName = channel.queueDeclare().getQueue();
-        // 此时routeKey 为 info
+        // 此时routeKey 为 *.orange.*
         String routeKey = "*.orange.*";
         channel.queueBind(queueName, EXCHANGE_NAME, routeKey);
         System.out.println(" [*] A Waiting for messages. To exit press CTRL+C");
