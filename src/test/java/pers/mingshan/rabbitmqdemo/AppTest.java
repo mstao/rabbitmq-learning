@@ -1,4 +1,4 @@
-package pers.mingshan.RabbitMQ_HelloWorld;
+package pers.mingshan.rabbitmqdemo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
