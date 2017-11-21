@@ -30,7 +30,7 @@ public class Publisher {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         // 声明exchange，Exchange Types为headers
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.HEADERS);
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
         System.out.println("Please enter message --->");
         String message = "";
         String routeKey = "quick.orange.rabbit";
