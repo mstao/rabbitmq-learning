@@ -92,7 +92,7 @@ public class RPCClient {
         if (fibonacciRpc!= null) {
           try {
             fibonacciRpc.close();
-          } catch (IOException _ignore) {}
+          } catch (IOException ignore) {}
         }
       }
     }

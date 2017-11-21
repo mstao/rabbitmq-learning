@@ -26,7 +26,6 @@ public class SubscriberB {
         // 此时routeKey 为 error
         String routeKey = "error";
         channel.queueBind(queueName, EXCHANGE_NAME, routeKey);
-        channel.queueBind(queueName, EXCHANGE_NAME, "");
         System.out.println(" [*] B Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {

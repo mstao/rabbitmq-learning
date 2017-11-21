@@ -103,7 +103,7 @@ public class RPCServer {
         if (connection != null)
           try {
             connection.close();
-          } catch (IOException _ignore) {}
+          } catch (IOException ignore) {}
       }
     }
 }
