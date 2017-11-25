@@ -10,7 +10,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * 发布，订阅
+ * 生产者
  * Exchange Types为topic
  * <ul>
  *   <li>routing key为一个句点号“. ”分隔的字符串（我们将被句点号“. ”分隔开的每一段独立的字符串称为一个单词），
@@ -21,7 +21,7 @@ import com.rabbitmq.client.ConnectionFactory;
  * @author mingshan
  *
  */
-public class Publisher {
+public class Producer {
     private final static String EXCHANGE_NAME = "logs-topic";
 
     public static void main(String[] args) throws IOException, TimeoutException {

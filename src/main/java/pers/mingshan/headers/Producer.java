@@ -14,7 +14,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
 /**
- * 发布，订阅
+ * 生产者
  * Exchange Types为headers
  * 
  * Headers是一个键值对，可以定义成HashMap。发送者在发送的时候定义一些键值对，接收者也可以再绑定时候传入一些键值对，
@@ -24,7 +24,7 @@ import com.rabbitmq.client.MessageProperties;
  * @author mingshan
  *
  */
-public class Publisher {
+public class Producer {
     private final static String EXCHANGE_NAME = "logs-headers";
 
     public static void main(String[] args) throws IOException, TimeoutException {

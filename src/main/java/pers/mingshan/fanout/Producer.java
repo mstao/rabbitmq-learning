@@ -9,14 +9,14 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * 发布，订阅
+ * 生产者
  * Exchange Types为fanout
  * 
  * fanout类型的Exchange路由规则非常简单，它会把所有发送到该Exchange的消息路由到所有与它绑定的Queue中。
  * @author mingshan
  *
  */
-public class Publisher {
+public class Producer {
     private final static String EXCHANGE_NAME = "logs";
 
     public static void main(String[] args) throws IOException, TimeoutException {

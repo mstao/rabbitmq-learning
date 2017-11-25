@@ -12,7 +12,12 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
-public class SubscriberB {
+/**
+ * 消费者
+ * @author mingshan
+ *
+ */
+public class ConsumerB {
     private final static String EXCHANGE_NAME = "logs";
 
     public static void main(String[] args) throws IOException, TimeoutException {
@@ -24,14 +29,14 @@ public class SubscriberB {
 
         String queueName = channel.queueDeclare().getQueue();
         channel.queueBind(queueName, EXCHANGE_NAME, "");
-        System.out.println(" [*] B Waiting for messages. To exit press CTRL+C");
+        System.out.println("B Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println("[x] B Recv '" + message + "'");
+                System.out.println("B Recv '" + message + "'");
             }
         };
 

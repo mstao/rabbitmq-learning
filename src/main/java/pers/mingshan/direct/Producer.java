@@ -10,14 +10,14 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * 发布，订阅
+ * 生产者
  * Exchange Types为direct
  * 
  * direct类型的Exchange路由规则也很简单，它会把消息路由到那些binding key与routing key完全匹配的Queue中。
  * @author mingshan
  *
  */
-public class Publisher {
+public class Producer {
     private final static String EXCHANGE_NAME = "logs-direct";
 
     public static void main(String[] args) throws IOException, TimeoutException {
