@@ -1,7 +1,7 @@
-# Compiled class file
+# Compiled class file #
 *.class
 
-# Log file
+# Log file #
 *.log
 
 # Package Files #
@@ -16,13 +16,12 @@
 .classpath
 .project
 
-### IntelliJ IDEA ###
+# IntelliJ IDEA #
 .idea
 *.iws
 *.iml
 *.ipr
 
-### my own ###
-/.settings/
-/target/
-.idea/
+# my own #
+.settings
+target

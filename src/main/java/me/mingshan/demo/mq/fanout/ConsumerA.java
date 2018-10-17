@@ -1,4 +1,4 @@
-package pers.mingshan.direct;
+package me.mingshan.demo.mq.fanout;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -18,19 +18,17 @@ import com.rabbitmq.client.AMQP.BasicProperties;
  *
  */
 public class ConsumerA {
-    private final static String EXCHANGE_NAME = "logs-direct";
+    private final static String EXCHANGE_NAME = "logs";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
 
         String queueName = channel.queueDeclare().getQueue();
-        // 此时routeKey 为 info
-        String routeKey = "info";
-        channel.queueBind(queueName, EXCHANGE_NAME, routeKey);
+        channel.queueBind(queueName, EXCHANGE_NAME, "");
         System.out.println("A Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {

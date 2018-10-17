@@ -1,4 +1,4 @@
-package pers.mingshan.rpc;
+package me.mingshan.demo.mq.rpc;
 
 import java.io.IOException;
 import java.util.UUID;

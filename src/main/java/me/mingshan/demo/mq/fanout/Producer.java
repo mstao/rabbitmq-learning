@@ -1,4 +1,4 @@
-package pers.mingshan.fanout;
+package me.mingshan.demo.mq.fanout;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

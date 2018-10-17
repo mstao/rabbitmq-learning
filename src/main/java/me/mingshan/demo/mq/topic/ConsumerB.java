@@ -1,4 +1,4 @@
-package pers.mingshan.topic;
+package me.mingshan.demo.mq.topic;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -17,7 +17,7 @@ import com.rabbitmq.client.AMQP.BasicProperties;
  * @author mingshan
  *
  */
-public class ConsumerA {
+public class ConsumerB {
     private final static String EXCHANGE_NAME = "logs-topic";
 
     public static void main(String[] args) throws IOException, TimeoutException {
@@ -28,17 +28,17 @@ public class ConsumerA {
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
 
         String queueName = channel.queueDeclare().getQueue();
-        // 此时routeKey 为 *.orange.*
-        String routeKey = "*.orange.*";
+        // 此时routeKey 为 *.*.haha
+        String routeKey = "*.*.haha";
         channel.queueBind(queueName, EXCHANGE_NAME, routeKey);
-        System.out.println("A Waiting for messages. To exit press CTRL+C");
+        System.out.println("B Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println("A Recv '" + message + "'");
+                System.out.println("B Recv '" + message + "'");
             }
         };
 

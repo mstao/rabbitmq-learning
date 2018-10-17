@@ -1,4 +1,4 @@
-package pers.mingshan.topic;
+package me.mingshan.demo.mq.direct;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,29 +11,25 @@ import com.rabbitmq.client.ConnectionFactory;
 
 /**
  * 生产者
- * Exchange Types为topic
- * <ul>
- *   <li>routing key为一个句点号“. ”分隔的字符串（我们将被句点号“. ”分隔开的每一段独立的字符串称为一个单词），
- *     如“stock.usd.nyse”、“nyse.vmw”、“quick.orange.rabbit”</li>
- *   <li>binding key与routing key一样也是句点号“. ”分隔的字符串</li>
- *   <li>binding key中可以存在两种特殊字符“*”与“#”，用于做模糊匹配，其中“*”用于匹配一个单词，“#”用于匹配多个单词（可以是零个）</li>
- * </ul>
+ * Exchange Types为direct
+ * 
+ * direct类型的Exchange路由规则也很简单，它会把消息路由到那些binding key与routing key完全匹配的Queue中。
  * @author mingshan
  *
  */
 public class Producer {
-    private final static String EXCHANGE_NAME = "logs-topic";
+    private final static String EXCHANGE_NAME = "logs-direct";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        // 声明exchange，Exchange Types为headers
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+        // 声明exchange，Exchange Types为direct
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
         System.out.println("Please enter message --->");
         String message = "";
-        String routeKey = "quick.orange.rabbit";
+        String routeKey = "error";
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()) {

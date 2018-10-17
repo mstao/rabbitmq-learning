@@ -1,4 +1,4 @@
-package pers.mingshan.workqueue;
+package me.mingshan.demo.mq.workqueue;
 
 import java.io.IOException;
 import java.util.Scanner;

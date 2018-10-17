@@ -1,4 +1,4 @@
-package pers.mingshan.fanout;
+package me.mingshan.demo.mq.direct;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -17,26 +17,30 @@ import com.rabbitmq.client.AMQP.BasicProperties;
  * @author mingshan
  *
  */
-public class ConsumerB {
-    private final static String EXCHANGE_NAME = "logs";
+public class ConsumerA {
+    private final static String EXCHANGE_NAME = "logs-direct";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
 
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, EXCHANGE_NAME, "");
-        System.out.println("B Waiting for messages. To exit press CTRL+C");
+        // 此时routeKey 为 info
+        String routeKey = "info";
+        channel.queueBind(queueName, EXCHANGE_NAME, routeKey);
+        System.out.println("A Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println("B Recv '" + message + "'");
+                System.out.println("A Recv '" + message + "'");
+                // ACK确认
+                //channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
 

@@ -1,4 +1,4 @@
-package pers.mingshan.headers;
+package me.mingshan.demo.mq.headers;
 
 import java.io.IOException;
 import java.util.HashMap;
